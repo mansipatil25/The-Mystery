@@ -17,25 +17,7 @@ A premium, noir-themed detective mystery website. Review evidence, interrogate s
 - Custom magnifying-glass cursor, pixel-tile page transitions, full mobile responsiveness
 - **Zero build step.** Vanilla HTML/CSS/JS — no npm install, no bundler, no dependencies
 
-## Quick start
 
-Clone it and open `index.html` directly in a browser:
-
-```bash
-git clone https://github.com/<your-username>/the-bureau.git
-cd the-bureau
-open index.html   # macOS
-# or just double-click index.html in your file explorer
-```
-
-That's it. No server, no build, no install required.
-
-If you prefer running a local server (some browsers restrict certain features over `file://`):
-
-```bash
-python3 -m http.server 8000
-# then visit http://localhost:8000
-```
 
 ## Project structure
 
