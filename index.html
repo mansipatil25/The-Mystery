@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>THE BUREAU — Confidential Case Archive</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Oswald:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- ============ FILM GRAIN + VIGNETTE OVERLAY ============ -->
+<div class="grain-overlay"></div>
+<div class="vignette-overlay"></div>
+
+<!-- ============ CUSTOM CURSOR ============ -->
+<div class="cursor-glass" id="cursorGlass">
+  <svg viewBox="0 0 60 60" class="cursor-svg">
+    <circle cx="24" cy="24" r="16" class="cursor-ring"/>
+    <circle cx="24" cy="24" r="16" class="cursor-ring-inner"/>
+    <line x1="35" y1="35" x2="52" y2="52" class="cursor-handle"/>
+  </svg>
+</div>
+<div class="cursor-dot" id="cursorDot"></div>
+
+<!-- ============ PIXEL TRANSITION CANVAS ============ -->
+<canvas id="pixelTransition"></canvas>
+
+<!-- ============ TOP NAVIGATION ============ -->
+<nav class="bureau-nav" id="bureauNav">
+  <div class="nav-inner">
+    <a href="#" class="nav-brand" data-nav="home">
+      <span class="brand-mark">★</span>
+      <span class="brand-text">THE BUREAU</span>
+    </a>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#" data-nav="home"><span class="nav-num">01</span>Archive Hall</a></li>
+      <li><a href="#" data-nav="cases"><span class="nav-num">02</span>Case Files</a></li>
+      <li><a href="#" data-nav="board"><span class="nav-num">03</span>Evidence Board</a></li>
+      <li><a href="#" data-nav="gallery"><span class="nav-num">04</span>Hall of Faces</a></li>
+      <li><a href="#" data-nav="dossier"><span class="nav-num">05</span>Your Dossier</a></li>
+    </ul>
+    <div class="nav-badge">
+      <span class="badge-pulse"></span>
+      <span id="navStatusText">ARCHIVE: 22 FILES</span>
+    </div>
+  </div>
+</nav>
+
+<!-- ============ MAIN VIEW CONTAINER ============ -->
+<main id="app">
+
+  <!-- ============================================================ -->
+  <!-- VIEW: HOME / HERO -->
+  <!-- ============================================================ -->
+  <section class="view view-home active" id="view-home">
+
+    <header class="hero">
+      <div class="hero-bg-grid"></div>
+      <div class="hero-spotlight" id="heroSpotlight"></div>
+
+      <div class="hero-content">
+        <div class="hero-stamp">CLASSIFIED — INVESTIGATOR ACCESS ONLY</div>
+        <h1 class="hero-title">
+          <span class="hero-title-line">EVERY FILE</span>
+          <span class="hero-title-line hero-title-accent">TELLS A LIE</span>
+          <span class="hero-title-line">FIND IT.</span>
+        </h1>
+        <p class="hero-sub">Twenty-two unsolved files sit in the cabinet behind you. Murders. Disappearances. People who walked into a room and never walked out. The Bureau doesn't close cases — <em>you</em> do.</p>
+
+        <div class="hero-cta-row">
+          <button class="btn btn-primary" data-nav="cases">
+            <span>Enter the Archive</span>
+            <svg width="18" height="18" viewBox="0 0 18 18"><path d="M3 9h12M11 5l4 4-4 4" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <button class="btn btn-ghost" data-nav="board">
+            <span>View Evidence Board</span>
+          </button>
+        </div>
+
+        <div class="hero-stats">
+          <div class="hero-stat"><span class="stat-num" data-count="22">0</span><span class="stat-label">Total Files</span></div>
+          <div class="hero-stat"><span class="stat-num" data-count="19">0</span><span class="stat-label">Closed</span></div>
+          <div class="hero-stat"><span class="stat-num" data-count="3">0</span><span class="stat-label">Still Open</span></div>
+          <div class="hero-stat"><span class="stat-num" data-count="65">0</span><span class="stat-label">Suspects Filed</span></div>
+        </div>
+      </div>
+
+      <div class="hero-folder-stack" aria-hidden="true">
+        <div class="floating-folder folder-1">CASE</div>
+        <div class="floating-folder folder-2">FILE</div>
+        <div class="floating-folder folder-3">EVID.</div>
+      </div>
+
+      <div class="scroll-cue">
+        <span>SCROLL TO INVESTIGATE</span>
+        <div class="scroll-cue-line"></div>
+      </div>
+    </header>
+
+    <!-- HOW IT WORKS -->
+    <section class="section how-section">
+      <div class="section-inner">
+        <div class="section-label"><span class="label-tick"></span>METHOD</div>
+        <h2 class="section-title">How an Investigation Runs</h2>
+        <div class="how-grid">
+          <div class="how-card">
+            <div class="how-icon">①</div>
+            <h3>Open a File</h3>
+            <p>Pick a case from the archive. Read the briefing the Bureau received the morning it landed on the desk.</p>
+          </div>
+          <div class="how-card">
+            <div class="how-icon">②</div>
+            <h3>Walk the Scene</h3>
+            <p>Pin evidence to the corkboard, study the location, and read every suspect's statement — twice.</p>
+          </div>
+          <div class="how-card">
+            <div class="how-icon">③</div>
+            <h3>Interrogate</h3>
+            <p>Cross-reference motive against alibi. Someone in every file is lying. Find the seam.</p>
+          </div>
+          <div class="how-card">
+            <div class="how-icon">④</div>
+            <h3>Name Your Suspect</h3>
+            <p>Submit your verdict. The case file unseals, the real solution is revealed — and sometimes, a twist.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FEATURED CASES PREVIEW -->
+    <section class="section featured-section">
+      <div class="section-inner">
+        <div class="section-label"><span class="label-tick"></span>PRIORITY</div>
+        <h2 class="section-title">Fresh on the Desk</h2>
+        <div class="featured-row" id="featuredRow"></div>
+        <div class="featured-cta">
+          <button class="btn btn-outline" data-nav="cases">See All 22 Case Files →</button>
+        </div>
+      </div>
+    </section>
+
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- VIEW: CASE ARCHIVE GRID -->
+  <!-- ============================================================ -->
+  <section class="view view-cases" id="view-cases">
+    <div class="archive-header">
+      <div class="section-inner">
+        <div class="section-label"><span class="label-tick"></span>02 — CASE FILES</div>
+        <h2 class="section-title">The Filing Cabinet</h2>
+        <p class="archive-sub">Twenty-two folders. Some closed, some still bleeding ink. Filter by type, status, or how hard the Bureau thinks you'll have to work.</p>
+
+        <div class="archive-filters">
+          <div class="filter-group">
+            <span class="filter-label">TYPE</span>
+            <button class="filter-chip active" data-filter-type="all">All</button>
+            <button class="filter-chip" data-filter-type="murder">Murder</button>
+            <button class="filter-chip" data-filter-type="missing">Missing Person</button>
+          </div>
+          <div class="filter-group">
+            <span class="filter-label">STATUS</span>
+            <button class="filter-chip active" data-filter-status="all">All</button>
+            <button class="filter-chip" data-filter-status="closed">Closed</button>
+            <button class="filter-chip" data-filter-status="open">Open</button>
+          </div>
+          <div class="filter-group filter-search-group">
+            <span class="filter-label">SEARCH</span>
+            <input type="text" id="caseSearch" placeholder="case code, name, location..." class="filter-search"/>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cases-grid-wrap section-inner">
+      <div class="cases-grid" id="casesGrid"></div>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- VIEW: CASE DETAIL -->
+  <!-- ============================================================ -->
+  <section class="view view-detail" id="view-detail">
+    <div id="detailContent"></div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- VIEW: EVIDENCE BOARD (signature corkboard) -->
+  <!-- ============================================================ -->
+  <section class="view view-board" id="view-board">
+    <div class="board-header section-inner">
+      <div class="section-label"><span class="label-tick"></span>03 — SIGNATURE WALL</div>
+      <h2 class="section-title">The Evidence Board</h2>
+      <p class="archive-sub">Every closed file, pinned to one wall. Red string connects what the Bureau believes is connected. Click any card to open that file.</p>
+    </div>
+    <div class="corkboard-wrap">
+      <div class="corkboard" id="corkboard">
+        <svg class="string-svg" id="stringSvg"></svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- VIEW: GALLERY / HALL OF FACES -->
+  <!-- ============================================================ -->
+  <section class="view view-gallery" id="view-gallery">
+    <div class="section-inner">
+      <div class="section-label"><span class="label-tick"></span>04 — DOME GALLERY</div>
+      <h2 class="section-title">Hall of Faces</h2>
+      <p class="archive-sub">Every suspect ever filed by the Bureau, suspended beneath the dome. Drag to look around. Click a face to open their case.</p>
+    </div>
+    <div class="dome-gallery-wrap">
+      <div class="dome-gallery" id="domeGallery"></div>
+      <div class="dome-floor"></div>
+      <div class="dome-hint">DRAG TO ROTATE</div>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- VIEW: DETECTIVE DOSSIER (about / your stats) -->
+  <!-- ============================================================ -->
+  <section class="view view-dossier" id="view-dossier">
+    <div class="section-inner dossier-inner">
+      <div class="section-label"><span class="label-tick"></span>05 — PERSONNEL FILE</div>
+      <h2 class="section-title">Your Dossier</h2>
+
+      <div class="dossier-card">
+        <div class="dossier-photo">
+          <svg viewBox="0 0 120 120" class="dossier-silhouette">
+            <circle cx="60" cy="44" r="26" fill="currentColor"/>
+            <path d="M16 110c4-30 26-44 44-44s40 14 44 44" fill="currentColor"/>
+          </svg>
+        </div>
+        <div class="dossier-info">
+          <div class="dossier-row"><span>DESIGNATION</span><strong>Field Investigator</strong></div>
+          <div class="dossier-row"><span>CLEARANCE</span><strong>Level 3 — Archive Access</strong></div>
+          <div class="dossier-row"><span>CASES VIEWED</span><strong id="dossierViewed">0</strong></div>
+          <div class="dossier-row"><span>VERDICTS FILED</span><strong id="dossierVerdicts">0</strong></div>
+          <div class="dossier-row"><span>ACCURACY</span><strong id="dossierAccuracy">—</strong></div>
+        </div>
+      </div>
+
+      <div class="dossier-log">
+        <h3>Activity Log</h3>
+        <ul id="dossierLog" class="dossier-log-list">
+          <li class="log-empty">No activity recorded yet. Open a file to begin.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="bureau-footer">
+  <div class="section-inner footer-inner">
+    <div class="footer-brand">
+      <span class="brand-mark">★</span> THE BUREAU
+      <p>A confidential case archive. All names, places, and crimes are fictional — probably.</p>
+    </div>
+    <div class="footer-cols">
+      <div class="footer-col">
+        <h4>Archive</h4>
+        <a href="#" data-nav="cases">All Case Files</a>
+        <a href="#" data-nav="board">Evidence Board</a>
+        <a href="#" data-nav="gallery">Hall of Faces</a>
+      </div>
+      <div class="footer-col">
+        <h4>Bureau</h4>
+        <a href="#" data-nav="dossier">Your Dossier</a>
+        <a href="#" data-nav="home">Archive Hall</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom section-inner">© THE BUREAU — Case files fictional. No actual crimes were committed in the making of this archive.</div>
+</footer>
+
+<!-- ============ TOAST / VERDICT NOTIFICATIONS ============ -->
+<div class="toast-stack" id="toastStack"></div>
+
+<script src="cases-data.js"></script>
+<script src="comics-data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
