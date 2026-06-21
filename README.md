@@ -4,7 +4,7 @@ A premium, noir-themed detective mystery website. Review evidence, interrogate s
 
 ![The Bureau — home screen](docs/screenshot-home.png)
 
-**[Live demo →](#)** _(replace with your GitHub Pages URL once deployed — see below)_
+**[Live demo →](#)**
 
 ## Features
 
@@ -23,10 +23,10 @@ A premium, noir-themed detective mystery website. Review evidence, interrogate s
 
 ```
 the-bureau/
-├── index.html         Page structure, routing markup, all view sections
+├── index.html          Page structure, routing markup, all view sections
 ├── styles.css          Full noir design system (colors, type, layout, animations)
 ├── app.js              Application logic — routing, rendering, state, interactions
-├── cases-data.js        22 case files: suspects, evidence, solutions, twists
+├── cases-data.js       22 case files: suspects, evidence, solutions, twists
 ├── comics-data.js      Illustrated SVG case-reconstruction panels (currently case 001)
 └── docs/
     └── screenshot-home.png
