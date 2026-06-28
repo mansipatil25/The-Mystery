@@ -4,7 +4,8 @@ A premium, noir-themed detective mystery website. Review evidence, interrogate s
 
 ![The Bureau — home screen](docs/screenshot-home.png)
 
-**[Live demo →](#)**
+<img width="1436" height="2035" alt="screenshot-collage" src="https://github.com/user-attachments/assets/d74d5022-9e56-457f-a831-dc7319929d28" />
+
 
 ## Features
 
@@ -17,16 +18,34 @@ A premium, noir-themed detective mystery website. Review evidence, interrogate s
 - Custom magnifying-glass cursor, pixel-tile page transitions, full mobile responsiveness
 - **Zero build step.** Vanilla HTML/CSS/JS — no npm install, no bundler, no dependencies
 
+## Quick start
 
+Clone it and open `index.html` directly in a browser:
+
+```bash
+git clone https://github.com/<your-username>/the-bureau.git
+cd the-bureau
+open index.html   # macOS
+# or just double-click index.html in your file explorer
+```
+
+That's it. No server, no build, no install required.
+
+If you prefer running a local server (some browsers restrict certain features over `file://`):
+
+```bash
+python3 -m http.server 8000
+# then visit http://localhost:8000
+```
 
 ## Project structure
 
 ```
 the-bureau/
-├── index.html          Page structure, routing markup, all view sections
+├── index.html         Page structure, routing markup, all view sections
 ├── styles.css          Full noir design system (colors, type, layout, animations)
 ├── app.js              Application logic — routing, rendering, state, interactions
-├── cases-data.js       22 case files: suspects, evidence, solutions, twists
+├── cases-data.js        22 case files: suspects, evidence, solutions, twists
 ├── comics-data.js      Illustrated SVG case-reconstruction panels (currently case 001)
 └── docs/
     └── screenshot-home.png
