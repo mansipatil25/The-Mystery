@@ -110,6 +110,7 @@ const CASES = [
     solution: "Frederick Combe arranged this with Cecilia herself — the unsent letter shows she'd been planning to leave with him. The ladder and pre-paid carriage weren't an abduction but an elopement, hastily executed when her doubts became certainty.",
     twist: "Cecilia left a second letter, found weeks later, asking that no one be blamed — she'd simply chosen her own ending."
   },
+  
   {
     id: "005",
     code: "C-1171",
@@ -276,7 +277,7 @@ const MORE_CASES = [
     teaser: "Found beside her own furnace, a masterpiece shattered at her feet.",
     briefing: "Ines Calder was found dead beside the glassworks furnace, her skull struck by a blunt object, her finest commissioned piece in pieces around her. The workshop was locked for the night when her apprentice found her at dawn.",
     suspects: [
-      { name: "Roderick Calder", role: "Business Partner & Brother-in-law", motive: "Ines was buying him out of the family business after years of mismanagement.", alibi: "Says he left before closing, but the night watchman never logged his exit.", guilty: true },
+      { name: "Roderick Calder", role: "Business Partner & Brother-in-law", motive: "Ines was buying him out of the  family business after years of mismanagement.", alibi: "Says he left before closing, but the night watchman never logged his exit.", guilty: true },
       { name: "Junie Okafor", role: "Apprentice", motive: "Felt overworked and underpaid for years of unrecognized labor.", alibi: "Discovered the body — was she returning to the scene, or arriving fresh?" },
       { name: "Lord Pemberton", role: "Commissioning Client", motive: "Furious over delays to a piece meant for his daughter's wedding.", alibi: "Was at his estate, fully confirmed by staff." }
     ],
